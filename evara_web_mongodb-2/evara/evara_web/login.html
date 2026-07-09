@@ -1,0 +1,313 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="login.css">
+    <style>.error-msg{ color: rgb(255, 77, 97); font-size: 14px; margin-top: 12px; min-height: 18px; }</style>
+</head>
+<body>
+    <div>
+        <div class="header1">
+            <p><i class="fa fa-phone" aria-hidden="true"></i> (+01) - 2345 - 6789</p>
+            <p class="loc"><i class="fa fa-map-marker" aria-hidden="true"></i> Our location<span class="loc-tip">13 Tlemcen Road, Street 32, Beb-Wahren</span></p>
+            <a href="login.html">Log In / Sign Up</a>
+        </div>
+
+        <div class="header2">
+            <div>
+                <a href="index.html"><img src="https://billalben.github.io/evara-ecommerce/assets/img/logo.svg" alt=""></a>
+            </div>
+            <div class="nav">
+                <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                <a href="shop.html"><i class="fa fa-tags" aria-hidden="true"></i> Shop</a>
+                <a href="my_acc.html"><i class="fa fa-user-o" aria-hidden="true"></i> My Account</a>
+            </div>
+            <div class="search">
+                <input type="text" name="search" placeholder="Search For Items...">
+                <i id="icon" class="fa fa-heart-o" aria-hidden="true"></i>
+                <a href="cart.html"><i id="icon" class="fa fa-shopping-bag" aria-hidden="true"></i></a> 
+            </div>
+        </div>
+
+        <div>
+            <div class="login_header">
+                <p>Home &gt; <span id="authCrumb">Login / Register</span></p>
+            </div>
+
+            <div class="auth_wrap">
+                <div class="auth_card">
+                    <!-- Tabs (hidden on forgot/reset views) -->
+                    <div class="auth_tabs" id="authTabs">
+                        <button class="auth_tab active" data-view="login">Sign In</button>
+                        <button class="auth_tab" data-view="register">Create Account</button>
+                    </div>
+
+                    <!-- ===== Sign In ===== -->
+                    <div class="auth_view active" id="view-login">
+                        <h3>Welcome back</h3>
+                        <p class="auth_sub">Sign in to continue shopping with Evara.</p>
+
+                        <label class="auth_lbl">Email</label>
+                        <div class="field">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email">
+                        </div>
+
+                        <label class="auth_lbl">Password</label>
+                        <div class="field">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            <input type="password" id="loginPassword" placeholder="Your password" autocomplete="current-password">
+                            <i class="fa fa-eye toggle_pw" data-target="loginPassword" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="auth_row">
+                            <label class="remember"><input type="checkbox" id="rememberMe"> Remember me</label>
+                            <a class="auth_link" data-view="forgot">Forgot password?</a>
+                        </div>
+
+                        <button id="loginBtn">Sign In</button>
+                        <p class="error-msg" id="loginMsg"></p>
+                        <p class="auth_switch">New to Evara? <a class="auth_link" data-view="register">Create an account</a></p>
+                    </div>
+
+                    <!-- ===== Create Account ===== -->
+                    <div class="auth_view" id="view-register">
+                        <h3>Create your account</h3>
+                        <p class="auth_sub">Join Evara and check out faster.</p>
+
+                        <label class="auth_lbl">Username</label>
+                        <div class="field">
+                            <i class="fa fa-user-o" aria-hidden="true"></i>
+                            <input type="text" id="regUsername" placeholder="Your name" autocomplete="username">
+                        </div>
+
+                        <label class="auth_lbl">Email</label>
+                        <div class="field">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            <input type="email" id="regEmail" placeholder="you@example.com" autocomplete="email">
+                        </div>
+
+                        <label class="auth_lbl">Password</label>
+                        <div class="field">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            <input type="password" id="regPassword" placeholder="At least 4 characters" autocomplete="new-password">
+                            <i class="fa fa-eye toggle_pw" data-target="regPassword" aria-hidden="true"></i>
+                        </div>
+
+                        <label class="auth_lbl">Confirm Password</label>
+                        <div class="field">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            <input type="password" id="regConfirm" placeholder="Re-enter your password" autocomplete="new-password">
+                            <i class="fa fa-eye toggle_pw" data-target="regConfirm" aria-hidden="true"></i>
+                        </div>
+
+                        <button id="registerBtn">Create Account</button>
+                        <p class="error-msg" id="regMsg"></p>
+                        <p class="auth_switch">Already have an account? <a class="auth_link" data-view="login">Sign in</a></p>
+                    </div>
+
+                    <!-- ===== Forgot Password ===== -->
+                    <div class="auth_view" id="view-forgot">
+                        <h3>Forgot password?</h3>
+                        <p class="auth_sub">Enter your email and we'll send you a code to reset your password.</p>
+
+                        <label class="auth_lbl">Email</label>
+                        <div class="field">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            <input type="email" id="forgotEmail" placeholder="you@example.com" autocomplete="email">
+                        </div>
+
+                        <button id="forgotBtn">Send reset code</button>
+                        <p class="error-msg" id="forgotMsg"></p>
+                        <div class="dev_note" id="devNote" style="display:none;"></div>
+                        <p class="auth_switch"><a class="auth_link" data-view="login"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to sign in</a></p>
+                    </div>
+
+                    <!-- ===== Reset Password ===== -->
+                    <div class="auth_view" id="view-reset">
+                        <h3>Reset password</h3>
+                        <p class="auth_sub">Enter the code from the previous step and choose a new password.</p>
+
+                        <label class="auth_lbl">Email</label>
+                        <div class="field">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            <input type="email" id="resetEmail" placeholder="you@example.com" autocomplete="email">
+                        </div>
+
+                        <label class="auth_lbl">Reset code</label>
+                        <div class="field">
+                            <i class="fa fa-key" aria-hidden="true"></i>
+                            <input type="text" id="resetToken" placeholder="8-character code">
+                        </div>
+
+                        <label class="auth_lbl">New password</label>
+                        <div class="field">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            <input type="password" id="resetPassword" placeholder="At least 4 characters" autocomplete="new-password">
+                            <i class="fa fa-eye toggle_pw" data-target="resetPassword" aria-hidden="true"></i>
+                        </div>
+
+                        <label class="auth_lbl">Confirm new password</label>
+                        <div class="field">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            <input type="password" id="resetConfirm" placeholder="Re-enter new password" autocomplete="new-password">
+                            <i class="fa fa-eye toggle_pw" data-target="resetConfirm" aria-hidden="true"></i>
+                        </div>
+
+                        <button id="resetBtn">Reset password</button>
+                        <p class="error-msg" id="resetMsg"></p>
+                        <p class="auth_switch"><a class="auth_link" data-view="login"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to sign in</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="footer1">
+                <div class="fo_d1">
+                    <i style="font-size: 24px;" class="fa fa-envelope-o" aria-hidden="true"></i>
+                    <h3>Sign in to Newsletter</h3>
+                </div>
+                <div class="fo_d2">
+                    <p>...and receive ₹25 coupon for first shopping.</p>
+                </div>
+                <div class="fo_d3">
+                    <input type="text" placeholder="Enter Your Email">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+
+            <div class="footer2">
+                <div class="fo2_d1" style="width: 30%;">
+                    <img src="https://billalben.github.io/evara-ecommerce/assets/img/logo.svg" alt="">
+                    <p>Contact</p>
+                    <p><b>Address:</b> 13 Tlemcen Road, Street 32, Beb-Wahren</p>
+                    <p><b>Phone:</b>+01 2222 365 /(+91) 01 2345 6789</p>
+                    <p><b>Hours: </b>10:00 - 18:00, Mon - Sat</p>
+                   
+                </div>
+                <div style="width: 20%;">
+                    <h3>Information</h3>
+                    <a href="info.html#about">About Us</a>
+                    <a href="info.html#delivery">Delivery Information</a>
+                    <a href="info.html#privacy">Privacy Policy</a>
+                    <a href="info.html#terms">Terms &amp; Conditions</a>
+                    <a href="info.html#contact">Contact Us</a>
+                    <a href="info.html#support">Support Center</a>
+                </div>
+                <div style="width: 20%;">
+                    <h3>My Account</h3>
+                    <p>View Cart</p>
+                    <p>My Wishlist</p>
+                    <p>Track My Order</p>
+                    <p>Help</p>
+                    <p>Order</p>
+                </div>
+
+                <div style="width: 30%;">
+                    <h3>Secure Payment Gateways</h3>
+                    <img src="https://billalben.github.io/evara-ecommerce/assets/img/payment-method.png" alt="">
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        const $ = (id) => document.getElementById(id);
+        const CRUMBS = { login: "Login", register: "Register", forgot: "Forgot Password", reset: "Reset Password" };
+
+        // ---- view switching (login / register / forgot / reset) ----
+        function showView(view){
+            document.querySelectorAll(".auth_view").forEach(v => v.classList.remove("active"));
+            $("view-" + view).classList.add("active");
+            // tabs only make sense for login/register
+            const tabsVisible = (view === "login" || view === "register");
+            $("authTabs").style.display = tabsVisible ? "" : "none";
+            document.querySelectorAll(".auth_tab").forEach(t =>
+                t.classList.toggle("active", t.dataset.view === view));
+            $("authCrumb").textContent = CRUMBS[view] || "Login / Register";
+        }
+        document.querySelectorAll("[data-view]").forEach(el =>
+            el.addEventListener("click", e => {
+                if (el.tagName === "A") e.preventDefault();
+                showView(el.dataset.view);
+            }));
+
+        // ---- show / hide password ----
+        document.querySelectorAll(".toggle_pw").forEach(icon =>
+            icon.addEventListener("click", () => {
+                const inp = $(icon.dataset.target);
+                const show = inp.type === "password";
+                inp.type = show ? "text" : "password";
+                icon.classList.toggle("fa-eye", !show);
+                icon.classList.toggle("fa-eye-slash", show);
+            }));
+
+        const setMsg = (id, res) => {
+            const msg = $(id);
+            msg.style.color = res.ok ? "rgb(8,129,121)" : "rgb(255,77,97)";
+            msg.textContent = res.msg || "";
+        };
+        const withBusy = async (btn, fn) => { btn.disabled = true; try { return await fn(); } finally { btn.disabled = false; } };
+
+        // ---- login ----
+        $("loginBtn").addEventListener("click", () => withBusy($("loginBtn"), async () => {
+            const res = await loginUser($("loginEmail").value.trim(), $("loginPassword").value);
+            setMsg("loginMsg", res);
+            if (res.ok) setTimeout(() => location.href = "my_acc.html", 600);
+        }));
+
+        // ---- register ----
+        $("registerBtn").addEventListener("click", () => withBusy($("registerBtn"), async () => {
+            const res = await registerUser(
+                $("regUsername").value.trim(), $("regEmail").value.trim(),
+                $("regPassword").value, $("regConfirm").value);
+            setMsg("regMsg", res);
+            if (res.ok) setTimeout(() => location.href = "my_acc.html", 600);
+        }));
+
+        // ---- forgot password ----
+        $("forgotBtn").addEventListener("click", () => withBusy($("forgotBtn"), async () => {
+            const email = $("forgotEmail").value.trim();
+            const res = await forgotPassword(email);
+            setMsg("forgotMsg", res);
+            const note = $("devNote");
+            if (res.ok && res.devToken) {
+                note.style.display = "block";
+                note.innerHTML = `Demo mode — a real site would email this. Your reset code is ` +
+                    `<b>${res.devToken}</b>. <a class="auth_link" id="goReset">Reset password now &rarr;</a>`;
+                $("goReset").addEventListener("click", () => {
+                    $("resetEmail").value = email;
+                    $("resetToken").value = res.devToken;
+                    showView("reset");
+                });
+            } else {
+                note.style.display = "none";
+            }
+        }));
+
+        // ---- reset password ----
+        $("resetBtn").addEventListener("click", () => withBusy($("resetBtn"), async () => {
+            const res = await resetPassword(
+                $("resetEmail").value.trim(), $("resetToken").value.trim(),
+                $("resetPassword").value, $("resetConfirm").value);
+            setMsg("resetMsg", res);
+            if (res.ok) setTimeout(() => showView("login"), 1200);
+        }));
+
+        // Enter key submits the active view
+        document.querySelectorAll(".auth_view input").forEach(inp =>
+            inp.addEventListener("keydown", e => {
+                if (e.key !== "Enter") return;
+                const btn = inp.closest(".auth_view").querySelector("button");
+                if (btn) btn.click();
+            }));
+    </script>
+</body>
+</html>

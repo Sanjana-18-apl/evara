@@ -1,0 +1,14 @@
+{
+  "name": "evara_web",
+  "version": "1.0.0",
+  "description": "Evara ecommerce demo with a small Express backend for user accounts",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.9.0",
+    "dotenv": "^16.4.5"
+  }
+}

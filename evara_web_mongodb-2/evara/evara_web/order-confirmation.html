@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div>
+        <div class="header1">
+            <p><i class="fa fa-phone" aria-hidden="true"></i> (+01) - 2345 - 6789</p>
+            <p class="loc"><i class="fa fa-map-marker" aria-hidden="true"></i> Our location<span class="loc-tip">13 Tlemcen Road, Street 32, Beb-Wahren</span></p>
+            <a href="login.html">Log In / Sign Up</a>
+        </div>
+
+        <div class="header2">
+            <div>
+                <a href="index.html"><img src="https://billalben.github.io/evara-ecommerce/assets/img/logo.svg" alt=""></a>
+            </div>
+            <div class="nav">
+                <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                <a href="shop.html"><i class="fa fa-tags" aria-hidden="true"></i> Shop</a>
+                <a href="my_acc.html"><i class="fa fa-user-o" aria-hidden="true"></i> My Account</a>
+            </div>
+            <div class="search">
+                <input type="text" name="search" placeholder="Search For Items...">
+                <i id="icon" class="fa fa-heart-o" aria-hidden="true"></i>
+                <a href="cart.html"><i id="icon" class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+        <div class="confirm-box">
+            <div class="tick">&#10003;</div>
+            <h2>Thank you for your order!</h2>
+            <p class="muted">Your order has been placed successfully.</p>
+            <p style="margin-top:14px;">Order ID: <span class="oid" id="orderId">—</span></p>
+
+            <div class="card" style="text-align:left; margin-top:28px;" id="orderDetails"></div>
+
+            <div class="actions">
+                <a href="shop.html" class="btn-outline">Continue Shopping</a>
+                <a href="my_acc.html#orders" class="btn-primary">View My Orders</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const id = new URLSearchParams(location.search).get("id");
+            const order = getOrders().find(o => o.id === id);
+            if (!order) {
+                document.getElementById("orderDetails").innerHTML = "<p class='muted'>Order details not found.</p>";
+                return;
+            }
+            document.getElementById("orderId").textContent = order.id;
+
+            const itemsHtml = order.items.map(i =>
+                `<div class="order-line"><span>${i.name} × ${i.qty}</span><span>${money(i.price * i.qty)}</span></div>`
+            ).join("");
+
+            document.getElementById("orderDetails").innerHTML = `
+                <h3>Order Details</h3>
+                ${itemsHtml}
+                <div class="summary-line"><span>Subtotal</span><span>${money(order.subtotal)}</span></div>
+                <div class="summary-line"><span>Shipping</span><span>${order.shipping === 0 ? "FREE" : money(order.shipping)}</span></div>
+                <div class="summary-line total"><span>Total Paid</span><span>${money(order.total)}</span></div>
+                <p style="margin-top:14px;"><b>Payment:</b> ${order.payment.label} &nbsp; | &nbsp; <b>Status:</b> ${order.status}</p>
+                <p><b>Deliver to:</b> ${order.address.fullName}, ${order.address.line}, ${order.address.city}, ${order.address.state} - ${order.address.pincode}</p>
+                <p><b>Placed on:</b> ${order.date}</p>
+            `;
+        });
+    </script>
+</body>
+</html>

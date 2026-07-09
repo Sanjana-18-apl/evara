@@ -1,0 +1,170 @@
+/* login.css - auth forms + account dashboard (modern) */
+
+/* ---- Login / Register / Forgot / Reset (single centered card) ---- */
+.auth_wrap{
+    display:flex;
+    justify-content:center;
+    padding:48px 24px 64px;
+}
+.auth_card{
+    width:100%;
+    max-width:440px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:32px;
+}
+
+/* tabs */
+.auth_tabs{
+    display:flex;
+    gap:8px;
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:5px;
+    margin-bottom:28px;
+}
+.auth_tab{
+    flex:1;
+    border:none;
+    background:transparent;
+    color:var(--muted);
+    font-size:15px;
+    font-weight:600;
+    padding:11px 0;
+    border-radius:9px;
+    cursor:pointer;
+    transition:.2s;
+}
+.auth_tab.active{ background:var(--card); color:var(--teal); box-shadow:var(--shadow); }
+
+/* views */
+.auth_view{ display:none; }
+.auth_view.active{ display:block; animation:authFade .25s ease; }
+@keyframes authFade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+
+.auth_view h3{ color:var(--ink); font-size:24px; font-weight:600; margin:0 0 6px; }
+.auth_sub{ color:var(--muted); font-size:14px; margin:0 0 24px; }
+.auth_lbl{ display:block; color:var(--ink); font-size:13px; font-weight:600; margin-bottom:7px; }
+
+/* input field with leading icon + optional trailing eye */
+.field{
+    display:flex;
+    align-items:center;
+    border:2px solid var(--line);
+    border-radius:10px;
+    padding:0 14px;
+    margin-bottom:18px;
+    transition:.2s;
+}
+.field:focus-within{ border-color:var(--teal); box-shadow:0 0 0 3px rgba(8,129,121,.12); }
+.field > .fa{ color:var(--muted); font-size:16px; width:18px; text-align:center; }
+.field input{
+    flex:1;
+    border:none;
+    outline:none;
+    background:transparent;
+    height:48px;
+    padding:0 12px;
+    font-size:15px;
+    color:var(--ink);
+}
+.field .toggle_pw{ cursor:pointer; }
+.field .toggle_pw:hover{ color:var(--teal); }
+
+/* remember + forgot row */
+.auth_row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin:-4px 0 22px;
+    font-size:14px;
+}
+.remember{ display:flex; align-items:center; gap:7px; color:var(--muted); cursor:pointer; }
+.remember input{ accent-color:var(--teal); width:15px; height:15px; }
+
+.auth_link{ color:var(--teal); font-weight:600; cursor:pointer; text-decoration:none; }
+.auth_link:hover{ color:var(--teal-dark); text-decoration:underline; }
+
+.auth_card button:not(.auth_tab){
+    background:var(--teal);
+    border:none;
+    border-radius:10px;
+    color:#fff;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:700;
+    height:50px;
+    width:100%;
+    transition:.2s;
+}
+.auth_card button:not(.auth_tab):hover{ background:var(--teal-dark); }
+.auth_card button:disabled{ opacity:.6; cursor:not-allowed; }
+
+.auth_switch{ text-align:center; color:var(--muted); font-size:14px; margin:18px 0 0; }
+
+/* demo reset-code note */
+.dev_note{
+    background:var(--teal-light);
+    border:1px solid var(--teal);
+    border-radius:10px;
+    color:var(--ink);
+    font-size:14px;
+    line-height:1.5;
+    padding:14px 16px;
+    margin-top:16px;
+}
+.dev_note b{ letter-spacing:2px; font-size:16px; color:var(--teal-dark); }
+
+/* ---- Account dashboard ---- */
+.main_content{
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px;
+    max-width:1280px;
+    margin:40px auto;
+    padding:0 24px;
+}
+.ma_c1{
+    flex:0 0 280px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    height:max-content;
+}
+.ma_c1 div{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:#fff;
+    color:var(--ink);
+    font-size:15px;
+    font-weight:500;
+    padding:16px 24px;
+    border-bottom:1px solid var(--line);
+    width:100%;
+    cursor:pointer;
+    transition:.15s;
+}
+.ma_c1 div:last-child{ border-bottom:none; }
+.ma_c1 div:hover{ background:var(--teal-light); color:var(--teal); }
+.ma_c1 div p{ margin:0; }
+
+.ma_c2{
+    flex:1 1 420px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    color:var(--ink);
+}
+.ma_c2 .acc-tab > div:first-child h3{ color:var(--ink); }
+
+@media (max-width:760px){
+    .ma_c1{ flex:1 1 100%; }
+}

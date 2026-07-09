@@ -1,0 +1,16 @@
+[
+  {
+    "username": "sanjana",
+    "email": "sanjana2@gmail.com",
+    "salt": "4b70a7493563333c472935e326cb1df0",
+    "hash": "6845ca5964cc59caec9f6b63b924d929e01e0e440f2308c165fe0ed917ecb29840f34c929d84f901aaa3737c257711f5c125b3923aa649a30a1b19e7f376b7a1",
+    "createdAt": "2026-06-05T16:29:18.518Z"
+  },
+  {
+    "username": "rakshitha",
+    "email": "rakshitha2@gmail.com",
+    "salt": "bc93945a4da8c9a9c3c1ee6f6ed6ab32",
+    "hash": "29d760295c0a7fc921645f64122a9cb3a3278ec2b35372a6eb5847b3bef09b848aa67d964532b0df0fd9135ee333d68e9c3b3b693e7107e7c68dfa20456b2144",
+    "createdAt": "2026-06-20T04:24:06.578Z"
+  }
+]

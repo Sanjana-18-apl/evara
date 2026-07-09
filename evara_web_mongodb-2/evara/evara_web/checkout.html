@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div>
+        <div class="header1">
+            <p><i class="fa fa-phone" aria-hidden="true"></i> (+01) - 2345 - 6789</p>
+            <p class="loc"><i class="fa fa-map-marker" aria-hidden="true"></i> Our location<span class="loc-tip">13 Tlemcen Road, Street 32, Beb-Wahren</span></p>
+            <a href="login.html">Log In / Sign Up</a>
+        </div>
+
+        <div class="header2">
+            <div>
+                <a href="index.html"><img src="https://billalben.github.io/evara-ecommerce/assets/img/logo.svg" alt=""></a>
+            </div>
+            <div class="nav">
+                <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                <a href="shop.html"><i class="fa fa-tags" aria-hidden="true"></i> Shop</a>
+                <a href="my_acc.html"><i class="fa fa-user-o" aria-hidden="true"></i> My Account</a>
+            </div>
+            <div class="search">
+                <input type="text" name="search" placeholder="Search For Items...">
+                <i id="icon" class="fa fa-heart-o" aria-hidden="true"></i>
+                <a href="cart.html"><i id="icon" class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+        <div class="login_header">
+            <p>Home > Cart > Checkout</p>
+        </div>
+
+        <div class="checkout-wrap">
+            <div class="checkout-left">
+                <h2>Checkout</h2>
+
+                <div class="card">
+                    <h3>Shipping Address</h3>
+                    <div class="form-grid">
+                        <div>
+                            <label>Full Name</label>
+                            <input type="text" id="fullName" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label>Phone</label>
+                            <input type="text" id="phone" placeholder="10-digit mobile number">
+                        </div>
+                        <div class="full">
+                            <label>Address</label>
+                            <textarea id="addressLine" placeholder="House no, street, area"></textarea>
+                        </div>
+                        <div>
+                            <label>City</label>
+                            <input type="text" id="city" placeholder="City">
+                        </div>
+                        <div>
+                            <label>State</label>
+                            <input type="text" id="state" placeholder="State">
+                        </div>
+                        <div>
+                            <label>Pincode</label>
+                            <input type="text" id="pincode" placeholder="6-digit pincode">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Payment Method</h3>
+
+                    <label class="pay-option active" data-method="card">
+                        <input type="radio" name="payment" value="card" checked>
+                        <span class="label">Credit / Debit Card</span>
+                    </label>
+                    <div class="pay-fields" id="fields-card">
+                        <div class="form-grid">
+                            <div class="full">
+                                <label>Card Number</label>
+                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            <div class="full">
+                                <label>Name on Card</label>
+                                <input type="text" id="cardName" placeholder="Name on card">
+                            </div>
+                            <div>
+                                <label>Expiry (MM/YY)</label>
+                                <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div>
+                                <label>CVV</label>
+                                <input type="password" id="cardCvv" placeholder="123" maxlength="3">
+                            </div>
+                        </div>
+                        <p class="muted">This is a demo. No real payment is processed.</p>
+                    </div>
+
+                    <label class="pay-option" data-method="upi">
+                        <input type="radio" name="payment" value="upi">
+                        <span class="label">UPI</span>
+                    </label>
+                    <div class="pay-fields hidden" id="fields-upi">
+                        <label>UPI ID</label>
+                        <input type="text" id="upiId" placeholder="yourname@upi">
+                        <p class="muted">This is a demo. No real payment is processed.</p>
+                    </div>
+
+                    <label class="pay-option" data-method="cod">
+                        <input type="radio" name="payment" value="cod">
+                        <span class="label">Cash on Delivery</span>
+                    </label>
+                    <div class="pay-fields hidden" id="fields-cod">
+                        <p class="muted">Pay in cash when your order is delivered.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkout-right">
+                <div class="card">
+                    <h3>Order Summary</h3>
+                    <div class="summary-items" id="orderSummaryItems"></div>
+                    <div class="summary-line"><span>Subtotal</span><span id="sumSubtotal"></span></div>
+                    <div class="summary-line"><span>Shipping</span><span id="sumShipping"></span></div>
+                    <div class="summary-line total"><span>Total</span><span id="sumTotal"></span></div>
+                    <button class="place-order" id="placeOrderBtn">Place Order</button>
+                    <p class="error-msg" id="checkoutError"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Guard: must be logged in and have items
+        if (!currentEmail()) { alert("Please log in to checkout."); location.href = "login.html"; }
+        else if (getCart().length === 0) { alert("Your cart is empty."); location.href = "shop.html"; }
+
+        // Prefill name from account
+        document.addEventListener("DOMContentLoaded", () => {
+            const u = currentUser();
+            if (u) document.getElementById("fullName").value = u.username;
+            renderOrderSummary();
+            wirePaymentToggle();
+            document.getElementById("placeOrderBtn").addEventListener("click", submitOrder);
+        });
+
+        function renderOrderSummary() {
+            const box = document.getElementById("orderSummaryItems");
+            box.innerHTML = "";
+            getCart().forEach(i => {
+                const el = document.createElement("div");
+                el.className = "summary-item";
+                el.innerHTML = `
+                    <img src="${i.img}">
+                    <div>
+                        <div class="si-name">${i.name}</div>
+                        <div class="si-meta">Qty ${i.qty} × ${money(i.price)}</div>
+                    </div>`;
+                box.appendChild(el);
+            });
+            const {subtotal, shipping, total} = cartTotals();
+            document.getElementById("sumSubtotal").textContent = money(subtotal);
+            document.getElementById("sumShipping").textContent = shipping === 0 ? "FREE" : money(shipping);
+            document.getElementById("sumTotal").textContent = money(total);
+        }
+
+        function wirePaymentToggle() {
+            document.querySelectorAll(".pay-option").forEach(opt => {
+                opt.addEventListener("click", () => {
+                    document.querySelectorAll(".pay-option").forEach(o => o.classList.remove("active"));
+                    opt.classList.add("active");
+                    opt.querySelector("input").checked = true;
+                    document.querySelectorAll(".pay-fields").forEach(f => f.classList.add("hidden"));
+                    document.getElementById("fields-" + opt.dataset.method).classList.remove("hidden");
+                });
+            });
+        }
+
+        function selectedMethod() {
+            return document.querySelector('input[name="payment"]:checked').value;
+        }
+
+        function submitOrder() {
+            const err = document.getElementById("checkoutError");
+            err.textContent = "";
+
+            const address = {
+                fullName: val("fullName"), phone: val("phone"), line: val("addressLine"),
+                city: val("city"), state: val("state"), pincode: val("pincode"),
+            };
+            if (!address.fullName || !address.phone || !address.line || !address.city || !address.state || !address.pincode)
+                return fail("Please fill in all address fields.");
+            if (!/^\d{10}$/.test(address.phone)) return fail("Enter a valid 10-digit phone number.");
+            if (!/^\d{6}$/.test(address.pincode)) return fail("Enter a valid 6-digit pincode.");
+
+            const method = selectedMethod();
+            const payment = {method};
+            if (method === "card") {
+                const num = val("cardNumber").replace(/\s/g, "");
+                if (!/^\d{16}$/.test(num)) return fail("Enter a valid 16-digit card number.");
+                if (!val("cardName")) return fail("Enter the name on the card.");
+                if (!/^\d{2}\/\d{2}$/.test(val("cardExpiry"))) return fail("Enter expiry as MM/YY.");
+                if (!/^\d{3}$/.test(val("cardCvv"))) return fail("Enter a valid 3-digit CVV.");
+                payment.label = "Card ending " + num.slice(-4);
+            } else if (method === "upi") {
+                if (!/^[\w.\-]+@[\w]+$/.test(val("upiId"))) return fail("Enter a valid UPI ID (e.g. name@upi).");
+                payment.label = "UPI " + val("upiId");
+            } else {
+                payment.label = "Cash on Delivery";
+            }
+
+            const btn = document.getElementById("placeOrderBtn");
+            btn.disabled = true;
+            btn.textContent = method === "cod" ? "Placing order..." : "Processing payment...";
+
+            // Simulate a dummy payment delay then place the order
+            setTimeout(() => {
+                const res = placeOrder(address, payment);
+                if (!res.ok) { btn.disabled = false; btn.textContent = "Place Order"; return fail(res.msg); }
+                location.href = "order-confirmation.html?id=" + encodeURIComponent(res.order.id);
+            }, 1200);
+        }
+
+        const val = (id) => document.getElementById(id).value.trim();
+        function fail(msg) { document.getElementById("checkoutError").textContent = msg; return false; }
+    </script>
+</body>
+</html>

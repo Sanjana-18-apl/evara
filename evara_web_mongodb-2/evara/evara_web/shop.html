@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div>
+        <div class="header1">
+            <p><i class="fa fa-phone" aria-hidden="true"></i> (+01) - 2345 - 6789</p>
+            <p class="loc"><i class="fa fa-map-marker" aria-hidden="true"></i> Our location<span class="loc-tip">13 Tlemcen Road, Street 32, Beb-Wahren</span></p>
+            <a href="login.html">Log In / Sign Up</a>
+        </div>
+
+        <div class="header2">
+            <div>
+                <a href="index.html"><img src="https://billalben.github.io/evara-ecommerce/assets/img/logo.svg" alt=""></a>
+            </div>
+            <div class="nav">
+                <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                <a href="shop.html"><i class="fa fa-tags" aria-hidden="true"></i> Shop</a>
+                <a href="my_acc.html"><i class="fa fa-user-o" aria-hidden="true"></i> My Account</a>
+            </div>
+            <div class="search">
+                <input type="text" name="search" placeholder="Search For Items...">
+                <i id="icon" class="fa fa-heart-o" aria-hidden="true"></i>
+                <a href="cart.html"><i id="icon" class="fa fa-shopping-bag" aria-hidden="true"></i></a> 
+            </div>
+           
+        </div>
+
+        <div class="login_header">
+            <p>Home > Shop</p>
+        </div>
+
+        <div class="dept-filter">
+            <button class="dept-btn active" data-dept="all">All</button>
+            <button class="dept-btn" data-dept="men">Men</button>
+            <button class="dept-btn" data-dept="women">Women</button>
+        </div>
+
+        <div style="display: flex;">
+            <p class="para">We found <span id="itemCount" style="color:rgb(8, 129, 121) ;">0</span> items for you!</p>
+
+            <div class="sort_container">
+                <select id="sortOptions">
+                    <option value="">Default</option>
+                    <option value="price">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="name">Name (A–Z)</option>
+                </select>
+            </div>
+
+            <div class="search_container" >
+                <input type="text" placeholder="Search Products here" id="productSearch">
+                <button id="searchButton">Search</button>
+            </div>
+
+           
+            
+        </div>
+        <div id="productList" class="product-list" style="margin-bottom: 22%;">
+            <!-- My products will come here -->
+        </div>
+
+        <div style="margin-top: 20px;">
+            <div class="footer1">
+                <div class="fo_d1">
+                    <i style="font-size: 24px;" class="fa fa-envelope-o" aria-hidden="true"></i>
+                    <h3>Sign in to Newsletter</h3>
+                </div>
+                <div class="fo_d2">
+                    <p>...and receive ₹25 coupon for first shopping.</p>
+                </div>
+                <div class="fo_d3">
+                    <input type="text" placeholder="Enter Your Email">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+
+            <div class="footer2">
+                <div class="fo2_d1" style="width: 30%;">
+                    <img src="https://billalben.github.io/evara-ecommerce/assets/img/logo.svg" alt="">
+                    <p>Contact</p>
+                    <p><b>Address:</b> 13 Tlemcen Road, Street 32, Beb-Wahren</p>
+                    <p><b>Phone:</b>+01 2222 365 /(+91) 01 2345 6789</p>
+                    <p><b>Hours: </b>10:00 - 18:00, Mon - Sat</p>
+                   
+                </div>
+                <div style="width: 20%;">
+                    <h3>Information</h3>
+                    <a href="info.html#about">About Us</a>
+                    <a href="info.html#delivery">Delivery Information</a>
+                    <a href="info.html#privacy">Privacy Policy</a>
+                    <a href="info.html#terms">Terms &amp; Conditions</a>
+                    <a href="info.html#contact">Contact Us</a>
+                    <a href="info.html#support">Support Center</a>
+                </div>
+                <div style="width: 20%;">
+                    <h3>My Account</h3>
+                    <p>View Cart</p>
+                    <p>My Wishlist</p>
+                    <p>Track My Order</p>
+                    <p>Help</p>
+                    <p>Order</p>
+                </div>
+
+                <div style="width: 30%;">
+                    <h3>Secure Payment Gateways</h3>
+                    <img src="https://billalben.github.io/evara-ecommerce/assets/img/payment-method.png" alt="">
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+    <script src="script.js"></script>
+    
+</body>
+</html>
